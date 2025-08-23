@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
+import Dashboard from "./Dashboard";
 
 function MapWithPins() {
   const [pins, setPins] = useState<
@@ -116,11 +117,13 @@ export default function App() {
         <div style={{ display: "flex", gap: "16px" }}>
           <Link to="/" style={{ color: "#f0f4ff", textDecoration: "none" }}>Landing</Link>
           <Link to="/map" style={{ color: "#f0f4ff", textDecoration: "none" }}>Map</Link>
+          <Link to="/dashboard" style={{ color: "#f0f4ff", textDecoration: "none" }}>Dashboard</Link>
         </div>
       </nav>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );
