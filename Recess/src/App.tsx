@@ -229,7 +229,7 @@ function MapWithPins() {
                 </div>
                 <div style={{ marginBottom: 8 }}>
                   <label>
-                    Commissioner:{" "}
+                    Your Name:{" "}
                     <input
                       type="text"
                       value={infoForm.commissioner}

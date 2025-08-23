@@ -52,8 +52,14 @@ export default function LandingPage() {
         <img
           src="/map.png"
           alt="Map preview"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{
+            width: "150%",
+            height: "150%",
+            objectFit: "cover",
+            transform: "translate(-25%, -25%)",  // Center the zoom
+          }}
         />
+
       </div>
     </div>
   );
