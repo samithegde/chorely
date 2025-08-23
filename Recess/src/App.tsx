@@ -1,7 +1,9 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LandingPage from "./LandingPage";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export default function App() {
+function MapPage() {
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
       <MapContainer
@@ -15,5 +17,19 @@ export default function App() {
         />
       </MapContainer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <nav>
+        <Link to="/">Landing</Link> | <Link to="/map">Map</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/map" element={<MapPage />} />
+      </Routes>
+    </Router>
   );
 }
