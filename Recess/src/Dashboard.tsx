@@ -19,7 +19,16 @@ export default function Dashboard() {
               <h2 className="Reward"> $45 CAD</h2>
             </div>
         </div>
+        <div className = "buttonBox">
+          <button className="cancel">Cancel Gig</button>
+          <button className = "contact">Contact Commissioner</button>
+        </div>
+        <div className = "details">
+          <h1>Details</h1>
+          <p className = "description">blah blah blah blah blah blah blah blah blah blah blah</p>
+        </div>
       </div>
+      <button className ="more">Find More Gigs</button>
     </div>
   );
 }

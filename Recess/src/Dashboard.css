@@ -2,8 +2,8 @@
 
 .dashboard-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Stack all child elements vertically */
+  align-items: center; /* Center horizontally */
   height: calc(100vh - 64px);
   width: 100vw;
   background: linear-gradient(to bottom, #1c1c1c, #2a2a2a);
@@ -12,13 +12,15 @@
 }
 
 .taskBox {
-  background: linear-gradient(to top, rgba(46, 46, 46, 0.5), rgba(163, 163, 163, 0.247)); /* Gradient from bottom to top */
+  position: relative;
+  background: linear-gradient(to top, rgba(46, 46, 46, 0.5), rgba(163, 163, 163, 0.247));
   width: 800px;
   height: auto;
   border-radius: 8px;
   box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.281);
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
+  margin-top: 54px;
 
   display: flex;
   flex-direction: column;
@@ -29,7 +31,7 @@
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 20px;
   margin: 0;
   margin-bottom: 8px;
   margin-top: 5px;
@@ -54,7 +56,7 @@ h2:hover {
 
 .info {
   justify-content: center;
-  background-color: rgba(28, 28, 28, 0.582);
+  background: linear-gradient(to top, rgba(26, 25, 25, 0.377), rgba(110, 110, 110, 0.233));
   width: 100%;
   margin-top: 20px;
   padding: 15px;
@@ -68,6 +70,7 @@ h2:hover {
   padding: 20px;
   box-sizing: border-box;
   position: relative; /* Ensure relative positioning for child elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.336);
 }
 
 .LocationName {
@@ -79,7 +82,7 @@ h2:hover {
 }
 
 .rewardsBox {
-  background-color: #41414141;
+  background-color: #6d6d6d28;
   width: 275px;
   height: 240px;
   position: absolute;
@@ -90,4 +93,77 @@ h2:hover {
   display: flex;
   justify-content: center; /* Center horizontally */
   margin-top: 55px;
+  font-weight: 400;
+}
+.buttonBox {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(46, 46, 46, 0.329), rgba(163, 163, 163, 0.137));
+  border-radius: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.281);
+  z-index: 10;
+}
+.cancel{
+    border-radius: 24px;
+    background: linear-gradient(to top, rgba(97, 3, 3, 0.568), rgba(196, 3, 3, 0.658));
+    border-width: 0px;
+    margin-right: 5px;
+    transition: background-color 0.25s ease-in;
+
+}
+.cancel:hover{
+    background-color: rgb(212, 38, 38);
+    border-width: 2px;
+    border-color: white;
+}
+.contact{
+    border-radius: 24px;
+    background: linear-gradient(to top, rgba(3, 13, 70, 0.432),rgba(3, 6, 196, 0.527));
+    margin-left: 5px;
+    transition: background-color 0.25 ease-in;
+}
+.contact:hover{
+    background-color:rgb(13, 22, 153);
+    border-width: 2px;
+    border-color: white;
+}
+
+.details{
+    justify-content: center;
+    background: linear-gradient(to top, rgba(26, 25, 25, 0.377), rgba(110, 110, 110, 0.233));
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Ensure relative positioning for child elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.336);
+}
+.description{
+    font-weight: 200;
+}
+.more {
+  background: linear-gradient(to top, rgba(41, 138, 228, 0.281), rgba(117, 172, 255, 0.411));
+  border: none;
+  border-radius: 24px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px; /* Add spacing from the taskBox */
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.more:hover {
+  background-color: rgba(41, 138, 228, 0.5); /* Slightly darker hover effect */
 }
