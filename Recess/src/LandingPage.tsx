@@ -50,7 +50,7 @@ export default function LandingPage() {
         }}
       >
         <img
-          src="/MAP.png"
+          src="/map.png"
           alt="Map preview"
           style={{
             width: "150%",
