@@ -25,17 +25,58 @@
 }
 
 .dashboard-right {
-  flex: 1;
-  height: 98%;
-  width: 40px;
+  flex: 1.5;
+  height: 100%;
   padding: 20px;
-  border-radius: 16px; /* Add rounded corners */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  background: linear-gradient(to bottom, #2a2a2a, #1c1c1c); /* Add a gradient background */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Add a subtle border */
-  overflow: hidden; /* Ensure no content overflows */
 }
 
+.complete {
+  border-radius: 24px;
+  background: linear-gradient(to top, rgba(3, 97, 23, 0.568), rgba(3, 196, 45, 0.658));
+  border-width: 0px;
+  margin-right: 5px;
+  transition: background-color 0.25s ease-in;
+
+}
+
+.complete:hover {
+  background-color: rgb(3, 196, 45, 0.658);
+  border-width: 2px;
+  border-color: white;
+}
+
+
+.completed-section {
+  margin-top: 20px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.completed-section h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.completedTask {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.completedTask:last-child {
+  border-bottom: none;
+}
+
+.completedName {
+  font-weight: bold;
+}
+
+.completedDate {
+  color: #555;
+  font-size: 14px;
+}
 
 .empty-state {
   display: flex;
@@ -98,6 +139,17 @@ h2:hover {
   margin-bottom: 20px;
 }
 
+.bottomRow {
+  display: flex;
+  margin-top: 16px;
+}
+
+.topRow {
+  display: flex;
+  gap: 12px;
+}
+
+
 .info {
   justify-content: center;
   background: linear-gradient(to top, rgba(26, 25, 25, 0.377), rgba(110, 110, 110, 0.233));
@@ -139,7 +191,7 @@ h2:hover {
   justify-content: center;
   margin-top: 55px;
   font-weight: 400;
-  
+
 }
 
 .buttonBox {
