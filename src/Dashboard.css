@@ -19,7 +19,7 @@
 }
 
 .dashboard-left {
-  flex: 1;
+  flex: 2;
   overflow-y: auto;
   padding: 20px;
 }
@@ -29,9 +29,6 @@
   height: 100%;
   padding: 20px;
 }
-
-.dashboard-left { flex: 2; }
-.dashboard-right { flex: 1; }
 
 
 .empty-state {
