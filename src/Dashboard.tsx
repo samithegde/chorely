@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -36,10 +36,21 @@ export default function Dashboard({
   onCancelChore: (idx: number) => void;
 }) {
   const navigate = useNavigate();
+  const [completedTasks, setCompletedTasks] = useState<
+    { taskName: string; dateTime: string }[]
+  >([]);
+
+  const handleCompleteTask = (idx: number) => {
+    const completed = acceptedChores[idx];
+    setCompletedTasks((prev) => [
+      ...prev,
+      { taskName: completed.taskName, dateTime: completed.dateTime },
+    ]);
+    onCancelChore(idx);
+  };
 
   return (
     <div className="dashboard-split">
-      {/* LEFT: Task List */}
       <div className="dashboard-left">
         <h2>📋 My Tasks</h2>
 
@@ -80,13 +91,24 @@ export default function Dashboard({
                 </div>
 
                 <div className="buttonBox">
-                  <button
-                    className="cancel"
-                    onClick={() => onCancelChore(idx)}
-                  >
-                    Cancel
-                  </button>
-                  <button className="contact">Contact Commissioner</button>
+                  <div className="topRow">
+                    <button
+                      className="cancel"
+                      onClick={() => onCancelChore(idx)}
+                    >
+                      Cancel
+                    </button>
+                    <button className="contact">Contact Commissioner</button>
+                  </div>
+
+                  <div className="bottomRow">
+                    <button
+                      className="complete"
+                      onClick={() => handleCompleteTask(idx)}
+                    >
+                      Complete Task
+                    </button>
+                  </div>
                 </div>
 
                 <div className="details">
@@ -101,6 +123,18 @@ export default function Dashboard({
             <button className="more" onClick={() => navigate("/map")}>
               Find More Gigs
             </button>
+
+            {completedTasks.length > 0 && (
+              <div className="completed-section">
+                <h2>✅ Completed Tasks</h2>
+                {completedTasks.map((task, idx) => (
+                  <div key={idx} className="completedTask">
+                    <span className="completedName">{task.taskName}</span>
+                    <span className="completedDate">{task.dateTime}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>
