@@ -50,16 +50,16 @@ export default function LandingPage() {
         }}
       >
         <img
-          src="/map.png"
+          src="/MAP.png"
           alt="Map preview"
           style={{
             width: "150%",
             height: "150%",
             objectFit: "cover",
-            transform: "translate(-25%, -25%)",  // Center the zoom
+            transform: "translate(-25%, -25%)", // Center the zoom
+            boxShadow: "0 8px 20px rgba(0, 0, 0, 0.64)", // Add drop shadow
           }}
         />
-
       </div>
     </div>
   );
