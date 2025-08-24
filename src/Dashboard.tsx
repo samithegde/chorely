@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // if using React Router
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
 type Pin = {
@@ -11,12 +11,19 @@ type Pin = {
   description?: string;
 };
 
-export default function Dashboard({ acceptedChores }: { acceptedChores: Pin[] }) {
+export default function Dashboard({
+  acceptedChores,
+  onCancelChore,
+}: {
+  acceptedChores: Pin[];
+  onCancelChore: (idx: number) => void;
+}) {
   const navigate = useNavigate();
 
   return (
     <div className="dashboard-container">
-      <br></br><br></br>
+      <br />
+      <br />
       <h2>📋 My Tasks</h2>
 
       {acceptedChores.length === 0 ? (
@@ -56,7 +63,12 @@ export default function Dashboard({ acceptedChores }: { acceptedChores: Pin[] })
               </div>
 
               <div className="buttonBox">
-                <button className="cancel">Cancel Gig</button>
+                <button
+                  className="cancel"
+                  onClick={() => onCancelChore(idx)}
+                >
+                  Cancel
+                </button>
                 <button className="contact">Contact Commissioner</button>
               </div>
 
@@ -69,7 +81,6 @@ export default function Dashboard({ acceptedChores }: { acceptedChores: Pin[] })
             </div>
           ))}
 
-          {/* Find More Gigs button at the bottom if there ARE accepted chores */}
           <button className="more" onClick={() => navigate("/map")}>
             Find More Gigs
           </button>

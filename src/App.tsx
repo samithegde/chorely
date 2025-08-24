@@ -2,11 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Dashboard from "./Dashboard";
 import L from "leaflet";
 
-// Utility to create a colored marker icon
 function createColorIcon(color: string) {
   return new L.Icon({
     iconUrl:
@@ -338,7 +337,6 @@ function MapWithPins({
                 </div>
               )
             ) : (
-              // --- FREELANCER MODE ---
               <div>
                 <strong>{pin.taskName || "(No task name)"}</strong>
                 <div>{pin.location}</div>
@@ -395,6 +393,10 @@ export default function App() {
     setAcceptedChores([...acceptedChores, chore]);
   }
 
+  function handleCancelChore(idx: number) {
+    setAcceptedChores(chores => chores.filter((_, i) => i !== idx));
+  }
+
   return (
     <Router>
       <nav
@@ -431,7 +433,7 @@ export default function App() {
             setMode(mode === "commissioner" ? "freelancer" : "commissioner")
           }
         >
-          {mode === "commissioner" ? "Commissioner Mode" : "Freelancer Mode"}
+          {mode === "commissioner" ? "Commissioning" : "Freelancing"}
         </button>
       </nav>
       <Routes>
@@ -442,11 +444,14 @@ export default function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard acceptedChores={acceptedChores} />}
+          element={
+            <Dashboard
+              acceptedChores={acceptedChores}
+              onCancelChore={handleCancelChore} // <-- add this line
+            />
+          }
         />
       </Routes>
-
-
     </Router>
   );
 }
