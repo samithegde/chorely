@@ -47,11 +47,14 @@ function MapWithPins({
   mode: "commissioner" | "freelancer";
   acceptChore: (chore: Pin) => void;
 }) {
-  const [pins, setPins] = useState<Pin[]>([]);
+  const [pins, setPins] = useState<Pin[]>(() => {
+    const saved = localStorage.getItem("pins");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [editingPin, setEditingPin] = useState<number | null>(null);
   const [showInfoForm, setShowInfoForm] = useState<number | null>(null);
 
-  // Info form state (for commissioner editing)
   const [infoForm, setInfoForm] = useState({
     color: COLORS[0].value,
     location: "",
@@ -62,12 +65,14 @@ function MapWithPins({
     note: "",
   });
 
-  /** Handle commissioner-only map clicks */
+  React.useEffect(() => {
+    localStorage.setItem("pins", JSON.stringify(pins));
+  }, [pins]);
+
   function MapClickHandler() {
     useMapEvents({
       click(e) {
         if (mode === "commissioner") {
-          // Reset info form
           setInfoForm({
             color: COLORS[0].value,
             location: "",
@@ -78,7 +83,6 @@ function MapWithPins({
             note: "",
           });
 
-          // Add new pin
           setPins([
             ...pins,
             {
@@ -165,10 +169,8 @@ function MapWithPins({
             }}
           >
             {mode === "commissioner" ? (
-              // --- COMMISSIONER MODE ---
               showInfoForm === idx ? (
                 <div>
-                  {/* Form for editing pins */}
                   <div style={{ marginBottom: 8 }}>
                     <label>
                       Pin color:{" "}
@@ -352,14 +354,13 @@ function MapWithPins({
                     borderRadius: "6px",
                   }}
                   onClick={() => {
-                    alert(`You accepted: ${pin.taskName}`);   // ✅ keep the popup
-                    acceptChore(pin);                         // ✅ save to Dashboard
-                    setPins(pins.filter((_, i) => i !== idx)); // ✅ remove from map
+                    alert(`You accepted: ${pin.taskName}`);
+                    acceptChore(pin);
+                    setPins(pins.filter((_, i) => i !== idx));
                   }}
                 >
                   Accept Chore
                 </button>
-
               </div>
             )}
           </Popup>
@@ -394,7 +395,24 @@ export default function App() {
   }
 
   function handleCancelChore(idx: number) {
-    setAcceptedChores(chores => chores.filter((_, i) => i !== idx));
+    setAcceptedChores(chores => {
+      const cancelled = chores[idx];
+      const updated = chores.filter((_, i) => i !== idx);
+      const pins = JSON.parse(localStorage.getItem("pins") || "[]");
+      if (
+        cancelled &&
+        !pins.some(
+          (p: Pin) =>
+            p.position[0] === cancelled.position?.[0] &&
+            p.position[1] === cancelled.position?.[1]
+        )
+      ) {
+        pins.push(cancelled);
+        localStorage.setItem("pins", JSON.stringify(pins));
+      }
+
+      return updated;
+    });
   }
 
   return (
@@ -447,7 +465,7 @@ export default function App() {
           element={
             <Dashboard
               acceptedChores={acceptedChores}
-              onCancelChore={handleCancelChore} // <-- add this line
+              onCancelChore={handleCancelChore}
             />
           }
         />
