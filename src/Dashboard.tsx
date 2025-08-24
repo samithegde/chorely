@@ -110,7 +110,7 @@ export default function Dashboard({
           center={[43.6532, -79.3832]}
           zoom={12}
           style={{ height: "100%", width: "100%", borderRadius: "12px" }}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

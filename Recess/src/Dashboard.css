@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+  width: 100vw;
+  background: linear-gradient(to bottom, #1c1c1c, #2a2a2a);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.taskBox {
+  background: linear-gradient(to top, rgba(46, 46, 46, 0.5), rgba(163, 163, 163, 0.247)); /* Gradient from bottom to top */
+  width: 800px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.281);
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 8px;
+  margin-top: 5px;
+}
+
+h2 {
+  font-size: 40px;
+  margin: 0;
+  margin-bottom: 12px;
+  transition: background-color 0.25s ease;
+}
+h2:hover {
+  background-color: #ffffff1e;
+}
+
+.commissioner {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.info {
+  justify-content: center;
+  background-color: rgba(28, 28, 28, 0.582);
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative; /* Ensure relative positioning for child elements */
+}
+
+.LocationName {
+  font-weight: 400;
+}
+
+.Time {
+  font-weight: 400;
+}
+
+.rewardsBox {
+  background-color: #41414141;
+  width: 275px;
+  height: 240px;
+  position: absolute;
+  margin-left: 440px;
+  border-radius: 21px;
+}
+.Reward{
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 55px;
+}
