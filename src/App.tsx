@@ -359,7 +359,7 @@ function MapWithPins({
                     setPins(pins.filter((_, i) => i !== idx));
                   }}
                 >
-                  Accept Chore
+                  Accept Task
                 </button>
               </div>
             )}
