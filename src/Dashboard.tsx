@@ -39,7 +39,6 @@ export default function Dashboard({
 
   return (
     <div className="dashboard-split">
-      {/* LEFT: Task List */}
       <div className="dashboard-left">
         <h2>📋 My Tasks</h2>
 
