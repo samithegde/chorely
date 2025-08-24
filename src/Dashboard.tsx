@@ -16,7 +16,8 @@ export default function Dashboard({ acceptedChores }: { acceptedChores: Pin[] })
 
   return (
     <div className="dashboard-container">
-      <h2>📋 Accepted Chores</h2>
+      <br></br><br></br>
+      <h2>📋 My Tasks</h2>
 
       {acceptedChores.length === 0 ? (
         <div className="empty-state">
