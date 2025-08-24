@@ -103,7 +103,7 @@ h2:hover {
   background-color: #6d6d6d28;
   width: 275px;
   height: 240px;
-  position: absolute;
+  margin-top: -130px;
   margin-left: 440px;
   border-radius: 21px;
 }
@@ -113,6 +113,7 @@ h2:hover {
   justify-content: center;
   margin-top: 55px;
   font-weight: 400;
+  
 }
 
 .buttonBox {
