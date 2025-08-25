@@ -56,8 +56,8 @@ export default function LandingPage() {
             width: "150%",
             height: "150%",
             objectFit: "cover",
-            transform: "translate(-25%, -25%)", // Center the zoom
-            boxShadow: "0 8px 20px rgba(0, 0, 0, 0.64)", // Add drop shadow
+            transform: "translate(-25%, -25%)",
+            boxShadow: "0 8px 20px rgba(0, 0, 0, 0.64)",
           }}
         />
       </div>

@@ -47,8 +47,8 @@
 
 
 .completed-section {
-  background-color: #f1f5f9; /* slightly darker gray for visibility */
-  border: 1px solid #cbd5e1; /* light border */
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
   border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
@@ -58,7 +58,7 @@
 .completed-section h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #22c55e; /* green */
+  color: #22c55e;
   display: flex;
   align-items: center;
   margin-bottom: 15px;
