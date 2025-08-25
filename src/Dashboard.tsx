@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -17,8 +17,7 @@ type Pin = {
 
 function createColorIcon(color: string) {
   return new L.Icon({
-    iconUrl:
-      `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png`,
+    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png`,
     shadowUrl:
       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -36,16 +35,22 @@ export default function Dashboard({
   onCancelChore: (idx: number) => void;
 }) {
   const navigate = useNavigate();
-  const [completedTasks, setCompletedTasks] = useState<
-    { taskName: string; dateTime: string }[]
-  >([]);
+  const [completedTasks, setCompletedTasks] = useState<Pin[]>([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("completedTasks");
+    if (saved) {
+      setCompletedTasks(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+  }, [completedTasks]);
 
   const handleCompleteTask = (idx: number) => {
     const completed = acceptedChores[idx];
-    setCompletedTasks((prev) => [
-      ...prev,
-      { taskName: completed.taskName, dateTime: completed.dateTime },
-    ]);
+    setCompletedTasks((prev) => [...prev, completed]);
     onCancelChore(idx);
   };
 
@@ -61,16 +66,20 @@ export default function Dashboard({
               alt="Nothing Here"
               className="nothing-image"
             />
-            <button className="more" onClick={() => navigate("/map")}>
-              Find More Gigs
-            </button>
+            <div className="findMoreWrapper">
+              <button className="more" onClick={() => navigate("/map")}>
+                Find More Gigs
+              </button>
+            </div>
           </div>
         ) : (
           <>
             {acceptedChores.map((chore, idx) => (
               <div key={idx} className="taskBox">
                 <h1 className="task">Task</h1>
-                <h2 className="taskName">{chore.taskName || "(No task name)"}</h2>
+                <h2 className="taskName">
+                  {chore.taskName || "(No task name)"}
+                </h2>
 
                 <h1 className="commissioner">
                   Commissioner: {chore.commissioner || "Unknown"}
@@ -123,19 +132,20 @@ export default function Dashboard({
             <button className="more" onClick={() => navigate("/map")}>
               Find More Gigs
             </button>
-
-            {completedTasks.length > 0 && (
-              <div className="completed-section">
-                <h2>✅ Completed Tasks</h2>
-                {completedTasks.map((task, idx) => (
-                  <div key={idx} className="completedTask">
-                    <span className="completedName">{task.taskName}</span>
-                    <span className="completedDate">{task.dateTime}</span>
-                  </div>
-                ))}
-              </div>
-            )}
           </>
+        )}
+
+        {completedTasks.length > 0 && (
+          <div className="completed-section">
+            <h2>✅ Completed Tasks</h2>
+            {completedTasks.map((task, idx) => (
+              <div key={idx} className="completedTask">
+                <span className="completedName">{task.taskName}</span>
+                <span className="completedDate">{task.dateTime}</span>
+                <span className="completedReward">{task.reward}</span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
 
@@ -148,24 +158,25 @@ export default function Dashboard({
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; OpenStreetMap contributors'
+            attribution="&copy; OpenStreetMap contributors"
           />
-          {acceptedChores.map((chore, idx) =>
-            chore.position ? (
-              <Marker
-                key={idx}
-                position={chore.position}
-                icon={createColorIcon("blue")}
-              >
-                <Popup>
-                  <strong>{chore.taskName}</strong>
-                  <br />
-                  {chore.location}
-                  <br />
-                  {chore.dateTime}
-                </Popup>
-              </Marker>
-            ) : null
+          {acceptedChores.map(
+            (chore, idx) =>
+              chore.position && (
+                <Marker
+                  key={idx}
+                  position={chore.position}
+                  icon={createColorIcon("blue")}
+                >
+                  <Popup>
+                    <strong>{chore.taskName}</strong>
+                    <br />
+                    {chore.location}
+                    <br />
+                    {chore.dateTime}
+                  </Popup>
+                </Marker>
+              )
           )}
         </MapContainer>
       </div>

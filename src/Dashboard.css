@@ -47,35 +47,51 @@
 
 
 .completed-section {
+  background-color: #f1f5f9; /* slightly darker gray for visibility */
+  border: 1px solid #cbd5e1; /* light border */
+  border-radius: 12px;
+  padding: 20px;
   margin-top: 20px;
-  padding: 12px;
-  background: #f5f5f5;
-  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .completed-section h2 {
-  margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #22c55e; /* green */
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .completedTask {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px solid #ddd;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.completedTask:last-child {
-  border-bottom: none;
+.completedTask span {
+  font-size: 0.95rem;
+  color: #334155;
 }
 
 .completedName {
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.completedDate {
-  color: #555;
-  font-size: 14px;
+.completedReward {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.findMoreWrapper {
+  margin-bottom: 24px;
 }
 
 .empty-state {
@@ -98,7 +114,7 @@
 .taskBox {
   position: relative;
   background: linear-gradient(to top, rgba(46, 46, 46, 0.5), rgba(163, 163, 163, 0.247));
-  width: 800px;
+  width: 100%;
   height: auto;
   border-radius: 8px;
   box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.281);
